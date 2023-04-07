@@ -1,5 +1,6 @@
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local plugins = {
-{
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
@@ -16,37 +17,37 @@ local plugins = {
         "json",
         "markdown",
 
-       -- low level
+        -- low level
         "c",
-        "rust"
-      },
-    },
-  },
-   {
-   "williamboman/mason.nvim",
-   opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "html-lsp",
-        "prettier",
-        "stylua"
+        "rust",
       },
     },
   },
   {
-  "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "html-lsp",
+        "prettier",
+        "stylua",
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
 
-   dependencies = {
-     "jose-elias-alvarez/null-ls.nvim",
-     config = function()
-       require "custom.configs.null-ls"
-     end,
-   },
-   config = function()
+    dependencies = {
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        require "custom.configs.null-ls"
+      end,
+    },
+    config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-   end,
-},
-};
+    end,
+  },
+}
 
 return plugins
